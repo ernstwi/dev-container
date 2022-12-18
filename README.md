@@ -2,4 +2,4 @@
 
 Requirements:
 - Docker
-- [trash](https://hasseg.org/trash/)
+- [git-archive-all](https://github.com/Kentzo/git-archive-all) (`brew install git-archive-all`)

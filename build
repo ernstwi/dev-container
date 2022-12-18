@@ -1,22 +1,12 @@
 #!/usr/bin/env bash
 
-input=(
-    "$HOME/.config/nvim"
-    "$HOME/dotfiles"
-    "$HOME/.local/share/nvim/site/pack/all/start"
-)
-output=(
-    "nvim"
-    "dotfiles"
-    "start"
-)
+git --git-dir ~/.config/nvim/.git archive --output=nvim-config.tar HEAD
+git-archive-all -C ~/.local/share/nvim/site/pack/all nvim-plugins.tar
 
-for file in "${input[@]}"; do
-    cp -r $file .
-done
+git --git-dir ~/dotfiles/.git archive --output=dotfiles.tar HEAD
 
 docker build -t nvim .
 
-for file in "${output[@]}"; do
-    trash $file
-done
+rm nvim-config.tar
+rm nvim-plugins.tar
+rm dotfiles.tar
