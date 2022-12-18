@@ -4,8 +4,7 @@ Docker image containing my personal development kit.
 
 OS: Ubunty 22.04 (Jammy)  
 Editor: Neovim  
-Tools: git, fzf, curl, fd, z  
-Supported languages: Node, C, Python, Ruby
+Tools: git, fzf, curl, fd, z
 
 Requirements:
 - Docker
