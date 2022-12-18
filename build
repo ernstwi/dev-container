@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+input=(
+    "$HOME/.config/nvim"
+    "$HOME/dotfiles"
+    "$HOME/.local/share/nvim/site/pack/all/start"
+)
+output=(
+    "nvim"
+    "dotfiles"
+    "start"
+)
+
+for file in "${input[@]}"; do
+    cp -r $file .
+done
+
+docker build -t nvim .
+
+for file in "${output[@]}"; do
+    trash $file
+done
