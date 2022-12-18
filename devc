@@ -1,11 +1,9 @@
 #!/usr/bin/env bash
 
-# Usage: devc [--init] <name> <mount>
-
 set -e # Fail on first error
 
 if [[ $# -lt 1 || $# -gt 3 ]]; then
-    echo "Usage: devc [--init] <name> <mount>"
+    echo "Usage: devc [--init] <name> [<mount>]"
     exit 1
 fi
 
