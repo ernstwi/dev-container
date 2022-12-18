@@ -15,4 +15,4 @@ docker run \
     -it \
     $MOUNT \
     --name $1 \
-    nvim bash
+    devc bash

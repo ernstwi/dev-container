@@ -5,7 +5,7 @@ git-archive-all -C ~/.local/share/nvim/site/pack/all nvim-plugins.tar
 
 git --git-dir ~/dotfiles/.git archive --output=dotfiles.tar HEAD
 
-docker build -t nvim .
+docker build -t devc .
 
 rm nvim-config.tar
 rm nvim-plugins.tar
