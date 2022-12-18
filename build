@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 git --git-dir ~/.config/nvim/.git archive --output=nvim-config.tar HEAD
-git-archive-all -C ~/.local/share/nvim/site/pack/all nvim-plugins.tar
+git-archive-all --prefix "" -C ~/.local/share/nvim/site/pack/all nvim-plugins.tar
 
 git --git-dir ~/dotfiles/.git archive --output=dotfiles.tar HEAD
 
