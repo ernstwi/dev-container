@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+# Usage: devc [--init] <name> <mount>
+
+set -e # Fail on first error
+
+if [[ $# -lt 1 || $# -gt 3 ]]; then
+    echo "Usage: devc [--init] <name> <mount>"
+    exit 1
+fi
+
+if [[ "$1" == "--init" ]]; then
+    if [[ $# -eq 3 ]]; then
+        MOUNT="--mount type=bind,src=$HOME/devc/$3,dst=/root/$3"
+    fi
+    docker run \
+        -it \
+        $MOUNT \
+        --name $2 \
+        devc bash
+    exit 0
+fi
+
+docker start -i $1
