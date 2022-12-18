@@ -3,13 +3,6 @@ WORKDIR /root
 
 RUN apt update
 
-# ---- Dotfiles ----------------------------------------------------------------
-
-ADD dotfiles.tar dotfiles
-RUN echo 'export PS1="$PS1\[\e[32m\](docker)\[\e[m\] "' >> dotfiles/.bashrc
-RUN rm .bashrc
-RUN dotfiles/symlink_create.sh
-
 # ---- Misc tools --------------------------------------------------------------
 
 # git, fzf, curl
@@ -40,10 +33,6 @@ RUN apt install -y software-properties-common
 RUN add-apt-repository ppa:neovim-ppa/unstable
 RUN apt install -y neovim
 
-# Neovim config
-ADD nvim-config.tar .config/nvim
-ADD nvim-plugins.tar .local/share/nvim/site/pack/all/start
-
 # LSP servers
 RUN npm install -g typescript-language-server typescript
 RUN npm install -g prettier
@@ -58,3 +47,14 @@ RUN pip install pynvim
 RUN npm install -g neovim
 RUN apt install -y ruby-dev
 RUN gem install neovim
+
+# Config
+ADD nvim-config.tar .config/nvim
+ADD nvim-plugins.tar .local/share/nvim/site/pack/all/start
+
+# ---- Dotfiles ----------------------------------------------------------------
+
+ADD dotfiles.tar dotfiles
+RUN echo 'export PS1="$PS1\[\e[32m\](docker)\[\e[m\] "' >> dotfiles/.bashrc
+RUN rm .bashrc
+RUN dotfiles/symlink_create.sh
