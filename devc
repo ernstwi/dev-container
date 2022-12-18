@@ -11,6 +11,7 @@ fi
 
 if [[ "$1" == "--init" ]]; then
     if [[ $# -eq 3 ]]; then
+        mkdir -p $HOME/devc/$3
         MOUNT="--mount type=bind,src=$HOME/devc/$3,dst=/root/$3"
     fi
     docker run \
