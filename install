@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
 
 ln -s $(PWD)/devc /usr/local/bin/devc
+mkdir -p ~/devc
