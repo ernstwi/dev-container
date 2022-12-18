@@ -50,7 +50,7 @@ RUN gem install neovim
 
 # Config
 ADD nvim-config.tar .config/nvim
-ADD nvim-plugins.tar .local/share/nvim/site/pack/all/start
+ADD nvim-plugins.tar .local/share/nvim/site/pack/all
 
 # ---- Dotfiles ----------------------------------------------------------------
 
