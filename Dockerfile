@@ -47,5 +47,5 @@ RUN nvim --headless -c "TSInstallSync! vim lua c typescript javascript" -c q
 RUN apt install -y python3-pip
 RUN pip install pynvim
 RUN npm install -g neovim
-RUN apt install -y ruby
+RUN apt install -y ruby-dev
 RUN gem install neovim
