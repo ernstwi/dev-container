@@ -5,7 +5,7 @@
 function git-archive-all() {
     out=$(realpath $2)
     git -C $1 archive --output "$out" HEAD
-    git -C $1 submodule foreach --recursive "git archive --prefix \$path/ --output \$sha1.tar HEAD && tar --concatenate --file "$out" \$sha1.tar && rm \$sha1.tar"
+    git -C $1 submodule foreach --recursive "git archive --prefix \$path/ --output \$sha1.tar HEAD && gtar --concatenate --file "$out" \$sha1.tar && rm \$sha1.tar"
 }
 
 git --git-dir ~/.config/nvim/.git archive --output=nvim-config.tar HEAD
