@@ -7,8 +7,6 @@ Editor: Neovim
 Tools: git, fzf, curl, fd, z
 
 Requirements:
-- Docker
-- [git-archive-all](https://github.com/Kentzo/git-archive-all) (`brew install git-archive-all`)
 - Dotfiles repo: `~/dotfiles`
 - Neovim config repo: `~/.config/nvim`
 - Neovim package repo: `~/.local/share/nvim/site/pack/all`
