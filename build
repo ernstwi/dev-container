@@ -8,13 +8,13 @@ function git-archive-all() {
     git -C $1 submodule foreach --recursive "git archive --prefix \$path/ --output \$sha1.tar HEAD && gtar --concatenate --file "$out" \$sha1.tar && rm \$sha1.tar"
 }
 
+git --git-dir ~/dotfiles/.git archive --output=dotfiles.tar HEAD
 git --git-dir ~/.config/nvim/.git archive --output=nvim-config.tar HEAD
 git-archive-all ~/.local/share/nvim/site/pack/all nvim-plugins.tar
 
-git --git-dir ~/dotfiles/.git archive --output=dotfiles.tar HEAD
 
 docker build -t devc .
 
+rm dotfiles.tar
 rm nvim-config.tar
 rm nvim-plugins.tar
-rm dotfiles.tar
