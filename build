@@ -6,12 +6,18 @@ function git-archive-all() {
     # TODO: Can we use --git-dir instead of -C and thus avoid realpath?
     out=$(realpath $2)
     git -C $1 archive --output "$out" HEAD
-    git -C $1 submodule foreach --recursive "git archive --prefix \$path/ --output \$sha1.tar HEAD && gtar --concatenate --file "$out" \$sha1.tar && rm \$sha1.tar"
+    git -C $1 submodule foreach --quiet --recursive "git archive --prefix \$path/ --output \$sha1.tar HEAD && gtar --concatenate --file "$out" \$sha1.tar && rm \$sha1.tar"
 }
 
+echo -n "Creating dotfiles.tar... "
 git --git-dir ~/dotfiles/.git archive --output=dotfiles.tar HEAD
+echo "DONE"
+echo -n "Creating nvim-config.tar... "
 git --git-dir ~/.config/nvim/.git archive --output=nvim-config.tar HEAD
+echo "DONE"
+echo -n "Creating nvim-plugins.tar... "
 git-archive-all ~/.local/share/nvim/site/pack/all nvim-plugins.tar
+echo "DONE"
 
 
 docker build -t devc .
