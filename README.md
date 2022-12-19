@@ -8,7 +8,6 @@ Tools: git, fzf, curl, fd, z
 
 Requirements:
 - GNU tar (`brew install gnu-tar`)
-- Go (for `devc` completion)
 - Dotfiles repo: `~/dotfiles`
 - Neovim config repo: `~/.config/nvim`
 - Neovim package repo: `~/.local/share/nvim/site/pack/all`
@@ -17,7 +16,7 @@ Requirements:
 
 ```
 ./build   # Build docker image
-./install # Install devc + completion
+./install # Symlink devc to /usr/local/bin
 ```
 
 ## Usage
