@@ -28,11 +28,11 @@ devc [--init] <name> [<mount>]
 
 `devc --init foo`
 
-Run bash in a new container `foo` with bind mount `~/devc/foo:~/foo`.
+Run bash in a new container `foo` with bind mount `~/devc/foo:~/foo`. Any existing container `foo` is stopped and deleted.
 
 `devc --init foo bar`
 
-Run bash in a new container `foo` with bind mount `~/devc/bar:~/bar`.
+Run bash in a new container `foo` with bind mount `~/devc/bar:~/bar`. Any existing container `foo` is stopped and deleted.
 
 `devc foo`
 

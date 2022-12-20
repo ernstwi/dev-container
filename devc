@@ -17,6 +17,7 @@ if [[ "$1" == "--init" ]]; then
     mkdir -p $HOME/devc/$MOUNT_DIR
     MOUNT="--mount type=bind,src=$HOME/devc/$MOUNT_DIR,dst=/root/$MOUNT_DIR"
 
+    docker rm -f $2 &> /dev/null
     docker run \
         -it \
         $MOUNT \
