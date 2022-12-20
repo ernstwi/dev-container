@@ -20,7 +20,7 @@ git-archive-all ~/.local/share/nvim/site/pack/all nvim-plugins.tar
 echo "DONE"
 
 
-docker build -t devc .
+docker build "$@" -t devc .
 
 rm dotfiles.tar
 rm nvim-config.tar
