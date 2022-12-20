@@ -48,13 +48,14 @@ RUN npm install -g neovim
 RUN apt install -y ruby-dev
 RUN gem install neovim
 
-# Config
-ADD nvim-config.tar .config/nvim
+# Plugins
 ADD nvim-plugins.tar .local/share/nvim/site/pack/all
 
-# Treesitter
-# (vim, lua, c are bundled with Neovim)
+# Treesitter (vim, lua, c are bundled with Neovim)
 RUN nvim --headless -c "TSInstallSync javascript typescript go" -c "quit"
+
+# Config
+ADD nvim-config.tar .config/nvim
 
 # ---- Dotfiles ----------------------------------------------------------------
 
