@@ -41,10 +41,6 @@ RUN npm install -g typescript-language-server typescript
 RUN npm install -g prettier
 RUN apt install -y gopls
 
-# Treesitter
-# (vim, lua, c are bundled with Neovim)
-RUN nvim --headless -c "TSInstallSync javascript typescript go" -c "quit"
-
 # Providers: Python, Node, Ruby
 RUN apt install -y python3-pip
 RUN pip install pynvim
@@ -55,6 +51,10 @@ RUN gem install neovim
 # Config
 ADD nvim-config.tar .config/nvim
 ADD nvim-plugins.tar .local/share/nvim/site/pack/all
+
+# Treesitter
+# (vim, lua, c are bundled with Neovim)
+RUN nvim --headless -c "TSInstallSync javascript typescript go" -c "quit"
 
 # ---- Dotfiles ----------------------------------------------------------------
 
