@@ -26,6 +26,9 @@ RUN apt install -y nodejs
 # C
 RUN apt install -y build-essential
 
+# Go
+RUN apt install -y golang
+
 # ---- Neovim ------------------------------------------------------------------
 
 # Neovim
@@ -36,10 +39,11 @@ RUN apt install -y neovim
 # LSP servers
 RUN npm install -g typescript-language-server typescript
 RUN npm install -g prettier
+RUN apt install -y gopls
 
 # Treesitter
 # (vim, lua, c are bundled with Neovim)
-RUN nvim --headless -c "TSInstallSync javascript typescript" -c "quit"
+RUN nvim --headless -c "TSInstallSync javascript typescript go" -c "quit"
 
 # Providers: Python, Node, Ruby
 RUN apt install -y python3-pip
