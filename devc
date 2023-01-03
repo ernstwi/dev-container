@@ -2,28 +2,19 @@
 
 set -e # Fail on first error
 
-if [[ $# -lt 1 || $# -gt 3 || ( "$1" == "--init" && $# -lt 2 ) ]]; then
-    echo "Usage: devc [--init] <name> [<mount>]"
-    exit 1
-fi
+container=$(pwd | sed 's/\//-/g' | cut -c2- | tr '[:upper:]' '[:lower:]')
 
 if [[ "$1" == "--init" ]]; then
-    if [[ $# -eq 3 ]]; then
-        MOUNT_DIR=$3
-    else
-        MOUNT_DIR=$2
-    fi
 
-    mkdir -p $HOME/devc/$MOUNT_DIR
-    MOUNT="--mount type=bind,src=$HOME/devc/$MOUNT_DIR,dst=/root/$MOUNT_DIR"
+    MOUNT="--mount type=bind,src=$PWD,dst=/root/pwd"
 
-    docker rm -f $2 &> /dev/null
+    docker rm -f $container &> /dev/null
     docker run \
         -it \
         $MOUNT \
-        --name $2 \
+        --name $container \
         devc bash
     exit 0
 fi
 
-docker start -i $1
+docker start -i $container
