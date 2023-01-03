@@ -4,7 +4,7 @@
 # Usage: git-archive-all <git-dir> <output.tar>
 function git-archive-all() {
     # TODO: Can we use --git-dir instead of -C and thus avoid realpath?
-    out=$(realpath $2)
+    out=$(realpath)/$2
     git -C $1 archive --output "$out" HEAD
     git -C $1 submodule foreach --quiet --recursive "git archive --prefix \$path/ --output \$sha1.tar HEAD && gtar --concatenate --file "$out" \$sha1.tar && rm \$sha1.tar"
 }
