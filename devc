@@ -2,19 +2,25 @@
 
 set -e # Fail on first error
 
-container=$(pwd | sed 's/\//-/g' | cut -c2- | tr '[:upper:]' '[:lower:]')
-
-if [[ "$1" == "--init" ]]; then
-
-    MOUNT="--mount type=bind,src=$PWD,dst=/root/pwd"
-
-    docker rm -f $container &> /dev/null
+# Make a new container
+function new() {
+    docker rm -f $1 &> /dev/null
     docker run \
         -it \
-        $MOUNT \
-        --name $container \
+        --mount type=bind,src=$PWD,dst=/root/pwd \
+        --name $1 \
         devc bash
-    exit 0
-fi
+}
 
-docker start -i $container
+# Resume an existing container
+function resume() {
+    docker start -i $1
+}
+
+container=$(pwd | sed 's/\//-/g' | cut -c2- | tr '[:upper:]' '[:lower:]')
+
+if [[ "$1" == "--init" ]] || ! docker container inspect $container &> /dev/null; then
+    new $container
+else
+    resume $container
+fi
