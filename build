@@ -9,14 +9,18 @@ function git-archive-all() {
     git -C $1 submodule foreach --quiet --recursive "git archive --prefix \$path/ --output \$sha1.tar HEAD && gtar --concatenate --file "$out" \$sha1.tar && rm \$sha1.tar"
 }
 
+: "${DOTFILES:?Must be defined}"
+: "${NVIM_CONFIG:?Must be defined}"
+: "${NVIM_PLUGINS:?Must be defined}"
+
 echo -n "Creating dotfiles.tar... "
-git --git-dir ~/dotfiles/.git archive --output=dotfiles.tar HEAD
+git --git-dir "$DOTFILES/.git" archive --output=dotfiles.tar HEAD
 echo "DONE"
 echo -n "Creating nvim-config.tar... "
-git --git-dir ~/.config/nvim/.git archive --output=nvim-config.tar HEAD
+git --git-dir "$NVIM_CONFIG/.git" archive --output=nvim-config.tar HEAD
 echo "DONE"
 echo -n "Creating nvim-plugins.tar... "
-git-archive-all ~/.local/share/nvim/site/pack/all nvim-plugins.tar
+git-archive-all "$NVIM_PLUGINS" nvim-plugins.tar
 echo "DONE"
 
 
