@@ -62,4 +62,5 @@ ADD nvim-config.tar .config/nvim
 ADD dotfiles.tar dotfiles
 RUN echo 'export PS1="$PS1\[\e[32m\](docker)\[\e[m\] "' >> dotfiles/.bashrc
 RUN rm .bashrc
-RUN dotfiles/symlink_create.sh
+WORKDIR /root/dotfiles
+RUN symlink_create.sh
