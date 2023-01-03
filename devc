@@ -11,6 +11,7 @@ function new() {
         --mount type=bind,src=$PWD,dst=/root/$pwd_basename \
         --name $1 \
         -w /root/$pwd_basename \
+        $publish \
         devc bash
 }
 
@@ -22,7 +23,14 @@ function resume() {
 container=$(pwd | sed 's/\//-/g' | cut -c2- | tr '[:upper:]' '[:lower:]')
 
 if [[ "$1" == "--init" ]] || ! docker container inspect $container &> /dev/null; then
-    new $container
+    if [[ $# -eq 2 ]]; then
+        publish="-p 127.0.0.1:$2:$2"
+    elif [[ $# -eq 3 ]]; then
+        publish="-p 127.0.0.1:$2:$3"
+    else
+        publish=""
+    fi
+    new $container $publish
 else
     resume $container
 fi
