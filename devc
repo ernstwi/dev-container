@@ -4,11 +4,13 @@ set -e # Fail on first error
 
 # Make a new container
 function new() {
+    pwd_basename=$(basename "$PWD")
     docker rm -f $1 &> /dev/null
     docker run \
         -it \
-        --mount type=bind,src=$PWD,dst=/root/pwd \
+        --mount type=bind,src=$PWD,dst=/root/$pwd_basename \
         --name $1 \
+        -w /root/$pwd_basename \
         devc bash
 }
 
