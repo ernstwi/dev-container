@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-ln -s $(PWD)/devc /usr/local/bin/devc
+ln -s $PWD/devc /usr/local/bin/devc
 go build completion.go
-echo "complete -C $(PWD)/completion devc" > /usr/local/etc/bash_completion.d/devc
+echo "complete -C $PWD/completion devc" > /usr/local/etc/bash_completion.d/devc
 chmod +x /usr/local/etc/bash_completion.d/devc
