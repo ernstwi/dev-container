@@ -5,10 +5,18 @@ RUN apt update
 
 # ---- Misc tools --------------------------------------------------------------
 
-# git, fzf, curl
+# git, fzf, curl, ranger, bat
 RUN apt install -y git
 RUN apt install -y fzf
 RUN apt install -y curl
+RUN apt install -y ranger
+RUN apt install -y bat
+
+# nvr
+RUN pip install neovim-remote
+
+# tldr
+RUN npm install -g tldr
 
 # fd
 RUN apt install -y fd-find
