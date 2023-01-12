@@ -23,7 +23,6 @@ echo -n "Creating nvim-plugins.tar... "
 git-archive-all "$NVIM_PLUGINS" nvim-plugins.tar
 echo "DONE"
 
-
 docker build "$@" -t devc .
 
 rm dotfiles.tar
