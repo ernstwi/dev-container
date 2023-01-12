@@ -3,6 +3,21 @@ WORKDIR /root
 
 RUN apt update
 
+# ---- Languages etc -----------------------------------------------------------
+
+# Node
+RUN curl -L https://deb.nodesource.com/setup_18.x | bash -
+RUN apt install -y nodejs
+
+# C
+RUN apt install -y build-essential
+
+# Go
+RUN apt install -y golang
+
+# Python
+RUN apt install -y python3-pip
+
 # ---- Misc tools --------------------------------------------------------------
 
 # git, fzf, curl, ranger, bat
@@ -25,18 +40,6 @@ RUN ln -s $(which fdfind) /usr/local/bin/fd
 # z
 ADD https://raw.githubusercontent.com/rupa/z/master/z.sh /usr/local/etc/profile.d/z.sh
 
-# ---- Compilers, languages, runtimes ------------------------------------------
-
-# Node
-RUN curl -L https://deb.nodesource.com/setup_18.x | bash -
-RUN apt install -y nodejs
-
-# C
-RUN apt install -y build-essential
-
-# Go
-RUN apt install -y golang
-
 # ---- Neovim ------------------------------------------------------------------
 
 # Neovim
@@ -50,7 +53,6 @@ RUN npm install -g prettier
 RUN apt install -y gopls
 
 # Providers: Python, Node, Ruby
-RUN apt install -y python3-pip
 RUN pip install pynvim
 RUN npm install -g neovim
 RUN apt install -y ruby-dev
