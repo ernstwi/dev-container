@@ -20,7 +20,7 @@ function resume() {
     docker start -i $1
 }
 
-container=$(pwd | sed 's/\//-/g' | cut -c2- | tr '[:upper:]' '[:lower:]')
+container=$(pwd -P | sed 's/\//-/g' | cut -c2- | tr '[:upper:]' '[:lower:]')
 
 if [[ "$1" == "--init" ]] || ! docker container inspect $container &> /dev/null; then
     if [[ $# -eq 2 ]]; then
